@@ -1,0 +1,50 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class GuessTheNumber {
+
+    public static void main(String[] args) {
+        
+        // Generate a random number between 1 and 100
+        Random random = new Random();
+        int randomNumber = random.nextInt(100) + 1;
+        
+        // Set the number of attempts and the score to 0
+        int attempts = 0;
+        int score = 0;
+        
+        // Create a Scanner object to read user input
+        Scanner scanner = new Scanner(System.in);
+        
+        // Loop until the user guesses the number or reaches the maximum number of attempts
+        while (true) {
+            
+            // Prompt the user to enter a number
+            System.out.print("Enter your guess (1-100): ");
+            int guess = scanner.nextInt();
+            
+            // Increase the number of attempts
+            attempts++;
+            
+            // Check if the guess is correct
+            if (guess == randomNumber) {
+                System.out.println("Congratulations! You guessed the number in " + attempts + " attempts.");
+                score = 100 / attempts; // Calculate the score based on the number of attempts
+                break;
+            } else if (guess < randomNumber) {
+                System.out.println("Your guess is too low.");
+            } else {
+                System.out.println("Your guess is too high.");
+            }
+            
+            // Check if the user has reached the maximum number of attempts
+            if (attempts == 10) {
+                System.out.println("Sorry, you have reached the maximum number of attempts.");
+                break;
+            }
+        }
+        
+        // Display the score
+        System.out.println("Your score is: " + score);
+    }
+}
